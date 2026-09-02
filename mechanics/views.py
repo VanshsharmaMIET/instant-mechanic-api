@@ -1,4 +1,4 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, filters
 from rest_framework.response import Response
 from .models import Mechanic, ServiceRequest
 from .serializers import MechanicSerializer, ServiceRequestSerializer
@@ -7,6 +7,8 @@ from .serializers import MechanicSerializer, ServiceRequestSerializer
 class MechanicViewSet(viewsets.ModelViewSet):
     queryset = Mechanic.objects.all()
     serializer_class = MechanicSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'location']
 
 
 class ServiceRequestViewSet(viewsets.ModelViewSet):

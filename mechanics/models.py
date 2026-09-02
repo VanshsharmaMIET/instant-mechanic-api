@@ -23,6 +23,9 @@ class Mechanic(models.Model):
         help_text='List of services, e.g. ["Oil Change", "Tyre Repair"]'
     )
 
+    class Meta:
+        ordering = ['id']
+
     def __str__(self):
         return self.name
 
@@ -43,6 +46,9 @@ class ServiceRequest(models.Model):
     problem_description = models.TextField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['id']
 
     def __str__(self):
         return f"{self.customer_name} - {self.service} ({self.status})"
